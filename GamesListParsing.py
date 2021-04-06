@@ -5,8 +5,8 @@ import string
 
 # 1.[DONE] добавить трим ценника
 # 2. добавить чтение url из файлов
-# 3. добавить запись в файл название игры + цена
-# 4. добавить запись в гугл-таблицу
+# 3. [IN PROGRESS]добавить запись в гугл-таблицу название игры + цена + дата обновления
+# 4. [DONE]добавить запись в гугл-таблицу
 # 5*. реализовать UI (???)
 def extract_block(url):
     link = req.get(url).text
@@ -16,7 +16,13 @@ def extract_block(url):
 
 
 def extract_price(block):
-    price = block.find_all('span')[5].text
+    ext_price = block.find_all('span')[5].text
+    price = ""
+    for i in ext_price:
+        if i in string.digits:
+            price = price + i
+            price = price[:4]
+
     return price
 
 
@@ -25,22 +31,11 @@ def extract_name(block):
     return name
 
 
-def normalize_price(price):
-    final_price = ""
-    for i in price:
-        if i in string.digits:
-            final_price = final_price + i
-            final_price = final_price[:4]
-
-    return final_price
-
-
 valhalla = "https://store.playstation.com/ru-ru/product/EP0001-PPSA01532_00-GAME000000000000"
 chronos = "https://store.playstation.com/ru-ru/product/EP4389-CUSA15161_00-CHRONOSEU0000000"
 
 
 ext_price = extract_price(extract_block(chronos))
 ext_name = extract_name(extract_block(chronos))
-norm_price = normalize_price(ext_price)
 
-print(ext_name, norm_price)
+print(ext_name, ext_price)
