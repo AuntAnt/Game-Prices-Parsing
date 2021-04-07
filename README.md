@@ -1,4 +1,5 @@
 # Game-Prices-Parsing
-Parsing PS Store game page. Write game title and actual price into Google Sheet.
-
-Still in progress
+Just pet project :-)
+1. Put PS Store game page URL in Google Sheet's "URL" row;
+2. Programm getting URL and parsing PS Store game page;
+3. Write game title, actual price and update date into same named rows.
