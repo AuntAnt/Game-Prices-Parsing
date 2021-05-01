@@ -17,11 +17,6 @@ httpAuth = credentials.authorize(httplib2.Http())
 service = apiclient.discovery.build('sheets', 'v4', http=httpAuth)
 
 
-# 1.[DONE]добавить трим ценника
-# 2.[DONE]добавить чтение url гугл-таблицы
-# 3.[DONE]добавить запись в гугл-таблицу название игры + цена + дата обновления
-# 4.[DONE]добавить запись в гугл-таблицу
-# 5*.реализовать UI (???)
 def extract_block(url):
     link = req.get(url).text
     soup = BeautifulSoup(link, 'lxml')
